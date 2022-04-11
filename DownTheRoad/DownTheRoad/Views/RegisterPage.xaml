@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    Title="Sign Up"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DownTheRoad.Views.RegisterPage">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <OnPlatform.Platforms>
+                <On
+                    Platform="iOS"
+                    Value="0, 20, 0, 20" />
+            </OnPlatform.Platforms>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <Entry
+                    Placeholder="Username"
+                    Text="{Binding UsernameB}" />
+                <Entry
+                    Placeholder="Password"
+                    IsPassword="True"
+                    Text="{Binding PasswordB}" />
+                <Entry
+                    Placeholder="Phone No"
+                    Text="{Binding PhoneNoB}"
+                    Keyboard="Numeric" />
+                <Picker
+                    Title="Select a role"
+                    TextColor="#6fbe84"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding RolePickerB}"
+                    SelectedItem="{Binding SelectedRole}" />
+            </StackLayout>
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+                <Button
+                    Text="Signup"
+                    Command="{Binding SignupCommand}" />
+                <Button
+                    Text="Clear"
+                    Command="{Binding ClearCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

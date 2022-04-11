@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    Title="Assigned Services"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
+    x:Class="DownTheRoad.Views.AssignedUserServicesPage">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <OnPlatform.Platforms>
+                <On
+                    Platform="iOS"
+                    Value="0, 20, 0, 20" />
+            </OnPlatform.Platforms>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="StartAndExpand">
+                <dg:DataGrid
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding UserServicesB}"
+                    SelectionEnabled="True"
+                    SelectedItem="{Binding SelectedService}"
+                    RowHeight="60"
+                    HeaderHeight="30"
+                    BorderColor="#CCCCCC"
+                    HeaderBackground="#E0E6F8"
+                    PullToRefreshCommand="{Binding RefreshCommand}"
+                    IsRefreshing="{Binding IsRefreshing}"
+                    ActiveRowColor="#a497f7">
+                    <x:Arguments>
+                        <ListViewCachingStrategy>RetainElement</ListViewCachingStrategy>
+                    </x:Arguments>
+                    <dg:DataGrid.HeaderFontSize>
+                        <OnIdiom
+                            x:TypeArguments="x:Double">
+                            <OnIdiom.Tablet>15</OnIdiom.Tablet>
+                            <OnIdiom.Phone>12</OnIdiom.Phone>
+                        </OnIdiom>
+                    </dg:DataGrid.HeaderFontSize>
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridColumn
+                            PropertyName="Title"
+                            Width="1*">
+                            <dg:DataGridColumn.FormattedTitle>
+                                <FormattedString>
+                                    <Span
+                                        Text="Title"
+                                        FontSize="13"
+                                        TextColor="Black"
+                                        FontAttributes="Bold" />
+                                </FormattedString>
+                            </dg:DataGridColumn.FormattedTitle>
+                        </dg:DataGridColumn>
+                        <dg:DataGridColumn
+                            Title="Description"
+                            PropertyName="Description"
+                            Width="2*" />
+                        <dg:DataGridColumn
+                            Title="Price"
+                            PropertyName="Price"
+                            Width="1*" />
+                        <dg:DataGridColumn
+                            Title="Assign. to"
+                            PropertyName="AssignedTo"
+                            Width="1*" />
+                    </dg:DataGrid.Columns>
+                    <dg:DataGrid.RowsBackgroundColorPalette>
+                        <dg:PaletteCollection>
+                            <Color>#e6e6e6</Color>
+                            <Color>#FFFFFF</Color>
+                        </dg:PaletteCollection>
+                    </dg:DataGrid.RowsBackgroundColorPalette>
+                </dg:DataGrid>
+            </StackLayout>
+            <StackLayout
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical">
+                    <Button
+                        Text="Back"
+                        Command="{Binding BackCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

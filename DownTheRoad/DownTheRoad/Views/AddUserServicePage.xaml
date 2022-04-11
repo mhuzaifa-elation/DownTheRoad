@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    Title="Add Service"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DownTheRoad.Views.AddUserServicePage">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <OnPlatform.Platforms>
+                <On
+                    Platform="iOS"
+                    Value="0, 20, 0, 20" />
+            </OnPlatform.Platforms>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <ScrollView
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Label
+                        TextColor="DarkSlateGray"
+                        Text="Title" />
+                    <Entry
+                        Placeholder="Enter Service Title"
+                        Text="{Binding ServiceTitleB}" />
+                    <Label
+                        TextColor="DarkSlateGray"
+                        Text="Price" />
+                    <Entry
+                        Placeholder="Enter Price"
+                        Text="{Binding PriceB}" 
+                        Keyboard="Numeric"/>
+                    <Label
+                        TextColor="DarkSlateGray"
+                        Text="Description" />
+                    <Editor
+                        Placeholder="Enter Description"
+                        Text="{Binding DescriptionB}"
+                        VerticalOptions="FillAndExpand" />
+                </StackLayout>
+            </ScrollView>
+            <StackLayout
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+                <Button
+                    Text="Post"
+                    Command="{Binding SaveServiceCommand}" />
+                <Button
+                    Text="Back"
+                    Command="{Binding BackCommand}" />
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
