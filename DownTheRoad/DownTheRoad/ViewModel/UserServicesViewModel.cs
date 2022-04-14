@@ -64,8 +64,7 @@ namespace DownTheRoad.ViewModel
 
         #endregion
         #region Constructor
-        //Initializing commands and getting exercise from firebase
-        public UserServicesViewModel()
+        public UserServicesViewModel() //Initializing commands and getting Services from firebase
         {
             if (SessionInfo.Role=="User")
             {
@@ -80,29 +79,26 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Methods 
-
-        private async Task GetServices() //Gets latest exercises from firebase
+        private async Task GetServices() //Gets latest Services from firebase
         {
-            List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
-            UserServicesB = AllExercises.FindAll(x => x.ServiceBy == SessionInfo.Username&& (x.RequestedBy ?? "").Length == 0 && (x.AssignedTo ?? "").Length == 0);
+            List<WorkService> AllServices = await FirebaseServices.GetAllServices();
+            UserServicesB = AllServices.FindAll(x => x.ServiceBy == SessionInfo.Username&& (x.RequestedBy ?? "").Length == 0 && (x.AssignedTo ?? "").Length == 0);
         }
-        private async void AssignedService() //
+        private async void AssignedService() //Shows Assigned Services
         {
             await Application.Current.MainPage.Navigation.PushAsync(new AssignedUserServicesPage());
         }
-     
-        private async void ShowCompleted() //
+        private async void ShowCompleted() //Shows Completed Services
         {
             await Application.Current.MainPage.Navigation.PushAsync(new CompletedUserServicesPage());
         }
-        private async void RequestService() //
+        private async void RequestService() //Shows Requested Services
         {
-
             await Application.Current.MainPage.Navigation.PushAsync(new RequestedServicesPage());
             MessagingCenter.Subscribe<string>(this, "Refresh", (v) => { CmdRefresh(); });
 
         }
-        private async void DeleteService() //Delete Selected Exercise from firebase
+        private async void DeleteService() //Delete Selected Service from firebase
         {
             try
             {
@@ -118,8 +114,7 @@ namespace DownTheRoad.ViewModel
 
             }
         }
-
-        private void AddService() //Adds new Exercise in firebase
+        private void AddService() //GOto Add Service Page
         {
             try
             {
@@ -132,8 +127,7 @@ namespace DownTheRoad.ViewModel
 
             }
         }
-
-        private async void CmdRefresh() //Refreshes Page with Latest exercises
+        private async void CmdRefresh() //Refreshes Page with Latest Services
         {
             IsRefreshing = true;
             await GetServices();

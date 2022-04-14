@@ -80,8 +80,7 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Constructor
-        //Initializing commands and checking if its an edit or new exercise
-        public WorkerProfileViewModel( string workerName)
+        public WorkerProfileViewModel( string workerName)//Initializing Worker Page 
         {
             var page = App.Current.MainPage.Navigation.NavigationStack[App.Current.MainPage.Navigation.NavigationStack.Count - 1];
             var CurrentPageTitle = page.Title;
@@ -98,8 +97,9 @@ namespace DownTheRoad.ViewModel
 
 
         }
-
-        private async void Initialize(string workerName)
+        #endregion
+        #region Methods   
+        private async void Initialize(string workerName)//Initializing commands
         {
             if (SessionInfo.Role == "Worker")
                 IsWokerB = true;
@@ -109,12 +109,12 @@ namespace DownTheRoad.ViewModel
             SaveProfileCommand = new Command(Save);
             BackCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopAsync());
             await CheckWorkerProfile(workerName);
-           
+
         }
 
-        private async Task CheckWorkerProfile( string workerName)
+        private async Task CheckWorkerProfile(string workerName) //Checking for existing profile in firebase
         {
-            WorkerNameB =workerName;
+            WorkerNameB = workerName;
             var WorkerProfileExists = await FirebaseServices.GetWorkerProfile(workerName);
             if (WorkerProfileExists != null)
             {
@@ -122,15 +122,12 @@ namespace DownTheRoad.ViewModel
                 if ((WorkerProfileExists.ImageText ?? "").Length > 0)
                 {
                     ImageSourceB = ConvertBase64TexttoImage(WorkerProfileExists.ImageText);
-                    ImageBase64Text=WorkerProfileExists.ImageText;
+                    ImageBase64Text = WorkerProfileExists.ImageText;
                 }
                 Key = WorkerProfileExists.Key;
             }
         }
-        #endregion
-        #region Methods 
-        //To Save the Exercise in Firebase(both update and new )
-        public async void Save()
+        public async void Save() //To Save the Profile in Firebase
         {
             try
             {
@@ -155,7 +152,7 @@ namespace DownTheRoad.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
-        public async void SelectImage()
+        public async void SelectImage()//TO Select the image from Gallery
         {
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions()
             {
@@ -172,15 +169,13 @@ namespace DownTheRoad.ViewModel
                 await ConvertImagetoBase64Text(stream);
             }
         }
-
-        private ImageSource ConvertBase64TexttoImage(string Base64Text)
+        private ImageSource ConvertBase64TexttoImage(string Base64Text)// Converting Image to Base 64 string format
         {
             var bytes = Convert.FromBase64String(Base64Text);
             return ImageSource.FromStream(() => new MemoryStream(bytes));
         }
 
-        [Obsolete]
-        private async Task ConvertImagetoBase64Text(Stream stream)
+        private async Task ConvertImagetoBase64Text(Stream stream)// Converting Base 64 string to Image format
         {
             byte[] data;
             var ImgMemoryStream = new MemoryStream();

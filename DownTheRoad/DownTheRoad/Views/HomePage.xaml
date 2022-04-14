@@ -72,6 +72,9 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         </StackLayout>
 
     </ContentPage>
+    <local:LogoutPage
+        TabIndex="5"
+        Title="Logout" />
     <!--<local:RegisterPage
         TabIndex="5"
         Title="Register" />-->

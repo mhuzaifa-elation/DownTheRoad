@@ -44,5 +44,10 @@ namespace DownTheRoad.Views
                 Children.RemoveAt(index);
             }
         }
+        protected override bool OnBackButtonPressed()
+        {
+            this.CurrentPage = Children[Children.Count-1];
+            return true;
+        }
     }
 }

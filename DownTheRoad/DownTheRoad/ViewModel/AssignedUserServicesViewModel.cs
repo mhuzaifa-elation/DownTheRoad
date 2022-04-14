@@ -58,25 +58,17 @@ namespace DownTheRoad.ViewModel
 
         #endregion
         #region Constructor
-        //Initializing commands and getting exercise from firebase
-        public AssignedUserServicesViewModel()
+        public AssignedUserServicesViewModel() //Initializing commands and getting Services from firebase
         {
             GetServices();
             BackCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopAsync());
         }
         #endregion
         #region Methods 
-
-        private async Task GetServices() //Gets latest exercises from firebase
+        private async Task GetServices() //Gets latest Servcies from firebase
         {
-            List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
-            UserServicesB = AllExercises.FindAll(x => x.ServiceBy == SessionInfo.Username && (x.RequestedBy ?? "").Length ==0&& (x.AssignedTo ?? "").Length > 0 && x.Completed==false) ;
-        }
-        private async void CmdRefresh() //Refreshes Page with Latest exercises
-        {
-            IsRefreshing = true;
-            await GetServices();
-            IsRefreshing = false;
+            List<WorkService> AllServices = await FirebaseServices.GetAllServices();
+            UserServicesB = AllServices.FindAll(x => x.ServiceBy == SessionInfo.Username && (x.RequestedBy ?? "").Length ==0&& (x.AssignedTo ?? "").Length > 0 && x.Completed==false) ;
         }
         #endregion
         #region  INotifyPropertyChanged Methods

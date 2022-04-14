@@ -59,8 +59,7 @@ namespace DownTheRoad.ViewModel
 
         #endregion
         #region Constructor
-        //Initializing commands and getting exercise from firebase
-        public RequestedWorkerServicesViewModel()
+        public RequestedWorkerServicesViewModel()//Initializing commands and getting Services from firebase
         {
             GetServices();
             DeleteRequestCommand = new Command(DeleteRequest);
@@ -68,13 +67,12 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Methods 
-
-        private async Task GetServices() //Gets latest exercises from firebase
+        private async Task GetServices() //Gets latest Services from firebase
         {
-            List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
-            ServicesB = AllExercises.FindAll(x => (x.ServiceBy??"").Length > 0 && (x.RequestedBy??"") == SessionInfo.Username&&(x.AssignedTo??"").Length==0);
+            List<WorkService> AllServices = await FirebaseServices.GetAllServices();
+            ServicesB = AllServices.FindAll(x => (x.ServiceBy??"").Length > 0 && (x.RequestedBy??"") == SessionInfo.Username&&(x.AssignedTo??"").Length==0);
         }
-        private async void DeleteRequest() //Delete Selected Exercise from firebase
+        private async void DeleteRequest() //Delete Selected Service Request from firebase
         {
             try
             {
@@ -92,7 +90,7 @@ namespace DownTheRoad.ViewModel
 
             }
         }
-        private async void CmdRefresh() //Refreshes Page with Latest exercises
+        private async void CmdRefresh() //Refreshes Page with Latest Services
         {
             IsRefreshing = true;
             await GetServices();

@@ -61,8 +61,7 @@ namespace DownTheRoad.ViewModel
 
         #endregion
         #region Constructor
-        //Initializing commands and getting exercise from firebase
-        public RequestedServicesViewModel()
+        public RequestedServicesViewModel()//Initializing commands and getting Services from firebase
         {
             GetServices();
             ApproveCommand = new Command(ApproveService);
@@ -72,13 +71,12 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Methods 
-
-        private async Task GetServices() //Gets latest exercises from firebase
+        private async Task GetServices() //Gets latest Services from firebase
         {
-            List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
-            UserServicesB = AllExercises.FindAll(x => x.ServiceBy == SessionInfo.Username&& (x.RequestedBy??"").Length>0 && (x.AssignedTo??"").Length == 0);
+            List<WorkService> AllServices = await FirebaseServices.GetAllServices();
+            UserServicesB = AllServices.FindAll(x => x.ServiceBy == SessionInfo.Username&& (x.RequestedBy??"").Length>0 && (x.AssignedTo??"").Length == 0);
         }
-        private async void DeleteRequest() //Delete Selected Exercise from firebase
+        private async void DeleteRequest() //Delete Selected Service Request from firebase
         {
             try
             {
@@ -96,7 +94,7 @@ namespace DownTheRoad.ViewModel
 
             }
         }
-        private async void ApproveService() //Delete Selected Exercise from firebase
+        private async void ApproveService() //Approve Selected Service Request from firebase
         {
             try
             {
@@ -115,7 +113,7 @@ namespace DownTheRoad.ViewModel
 
             }
         }
-        private async void ShowWorker() //Delete Selected Exercise from firebase
+        private async void ShowWorker() //Shows the worker's Profile
         {
             try
             {
@@ -130,9 +128,7 @@ namespace DownTheRoad.ViewModel
 
             }
         }
-
-
-        private async void CmdRefresh() //Refreshes Page with Latest exercises
+        private async void CmdRefresh() //Refreshes Page with Latest Services
         {
             IsRefreshing = true;
             await GetServices();

@@ -72,8 +72,7 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Constructor
-        //Initializing commands and checking if its an edit or new exercise
-        public AddUserServiceViewModel()
+        public AddUserServiceViewModel()//Initializing commands
         {
            
             SaveServiceCommand = new Command(Save);
@@ -82,8 +81,7 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Methods 
-        //To Save the Exercise in Firebase(both update and new )
-        public async void Save()
+        public async void Save() //To Save the Service in Firebase
         {
             try
             {
@@ -112,7 +110,6 @@ namespace DownTheRoad.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
-        
         #endregion
         #region  INotifyPropertyChanged Methods
 

@@ -8,7 +8,6 @@ using Xamarin.Forms;
 
 namespace DownTheRoad.ViewModel
 {
-
     public class RegisterViewModel : INotifyPropertyChanged
     {
         #region ClassVariables
@@ -87,16 +86,14 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Constructor
-        //Initializing commands 
-        public RegisterViewModel()
+        public RegisterViewModel()//Initializing commands
         {
             SignupCommand = new Command(SignupClicked);
             BackCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopAsync());
         }
         #endregion
         #region Methods 
-
-        private async void SignupClicked()//Log the user using firebase Authentication
+        private async void SignupClicked()//Saves the user using firebase 
         {
             try
             {
@@ -131,15 +128,13 @@ namespace DownTheRoad.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
-
-        private void ClearValues()
+        private void ClearValues() //Clears page Data
         {
             UsernameB = string.Empty;
             PasswordB = string.Empty;
             PhoneNoB = string.Empty;
             SelectedRole = string.Empty;
         }
-
         #endregion
         #region  INotifyPropertyChanged Methods
         public event PropertyChangedEventHandler PropertyChanged;
@@ -149,6 +144,5 @@ namespace DownTheRoad.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
         #endregion
-
     }
 }

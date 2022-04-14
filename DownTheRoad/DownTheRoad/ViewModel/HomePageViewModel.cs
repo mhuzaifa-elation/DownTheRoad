@@ -10,10 +10,12 @@ namespace DownTheRoad.ViewModel
 {
     public class HomePageViewModel : INotifyPropertyChanged
     {
+        #region  Constructor
         public HomePageViewModel()
         {
          
         }
+        #endregion
         #region  INotifyPropertyChanged Methods
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string property)

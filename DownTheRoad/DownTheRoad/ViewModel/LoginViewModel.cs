@@ -44,8 +44,7 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Constructor
-        //Initializing commands 
-        public LoginViewModel()
+        public LoginViewModel()//Initializing commands 
         {
             LoginCommand = new Command(LoginClicked);
             RegisterCommand = new Command(Register);
@@ -53,7 +52,7 @@ namespace DownTheRoad.ViewModel
         }
         #endregion
         #region Methods 
-        private async void Register() //Clears Credentials
+        private async void Register() //Navigate to Registration Page
         {
             await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
 
@@ -63,7 +62,7 @@ namespace DownTheRoad.ViewModel
             UsernameB = string.Empty;
             PasswordB = string.Empty;
         }
-        private async void LoginClicked()//Log the user using firebase Authentication
+        private async void LoginClicked()//Log the user using firebase 
         {
             try
             {
@@ -96,6 +95,5 @@ namespace DownTheRoad.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
         #endregion
-
     }
 }
