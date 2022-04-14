@@ -13,6 +13,7 @@ namespace DownTheRoad.ViewModel
         #region ClassVariables
         public ICommand ClearCommand { get; set; }
         public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
         string Username = "";
         string Password = "";
         public string PasswordB
@@ -47,10 +48,16 @@ namespace DownTheRoad.ViewModel
         public LoginViewModel()
         {
             LoginCommand = new Command(LoginClicked);
+            RegisterCommand = new Command(Register);
             ClearCommand = new Command(ClearClicked);
         }
         #endregion
         #region Methods 
+        private async void Register() //Clears Credentials
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+
+        }
         private void ClearClicked() //Clears Credentials
         {
             UsernameB = string.Empty;

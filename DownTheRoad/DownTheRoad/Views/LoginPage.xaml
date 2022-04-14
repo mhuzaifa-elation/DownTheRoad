@@ -3,7 +3,8 @@
     Title="Down The Road"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="DownTheRoad.Views.LoginPage">
+    x:Class="DownTheRoad.Views.LoginPage"
+    BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness">
@@ -47,6 +48,9 @@
                 <Button
                     Text="CLEAR"
                     Command="{Binding ClearCommand}" />
+                <Button
+                    Text="Register"
+                    Command="{Binding RegisterCommand}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

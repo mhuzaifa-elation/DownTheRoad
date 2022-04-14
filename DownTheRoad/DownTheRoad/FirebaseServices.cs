@@ -76,10 +76,41 @@ namespace DownTheRoad
                   Price = item.Object.Price,
                   ServiceBy = item.Object.ServiceBy,
                   RequestedBy = item.Object.RequestedBy,
-                  AssignedTo = item.Object.AssignedTo
+                  AssignedTo = item.Object.AssignedTo,
+                  Completed = item.Object.Completed,
+                  Location = item.Object.Location
               }).ToList();
             return AllWorkServices;
         }
+
+        public async static Task SaveWorkerProfile(WorkerProfile workerProfile)
+        {
+            await fc
+            .Child("WorkerProfiles")
+            .PostAsync(workerProfile);
+        }
+        public async static Task UpdateWorkerProfile(string Key,WorkerProfile workerProfile)
+        {
+            await fc
+            .Child("WorkerProfiles").Child(Key)
+            .PutAsync(workerProfile);
+        }
+        public async static Task<WorkerProfile> GetWorkerProfile(string WorkerName)
+        {
+            FirebaseClient fc = new FirebaseClient(Utils.RealtimeDbURL);
+            var AllProfiles = (await fc
+              .Child("WorkerProfiles")
+              .OnceAsync<WorkerProfile>()).Select(item => new WorkerProfile
+              {
+                  Key = item.Key,
+                  Name = item.Object.Name,
+                  Bio = item.Object.Bio,
+                  ImageText = item.Object.ImageText
+              }).ToList();
+            var Workerfound = AllProfiles.Find(x => x.Name == WorkerName);
+            return Workerfound;
+        }
+
         public static async Task UpdateExercise(string Key, WorkService workService) //Method for Updating existing Exercise in firebase Realtime DB
         {
             await fc

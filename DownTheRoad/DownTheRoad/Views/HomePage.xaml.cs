@@ -20,14 +20,14 @@ namespace DownTheRoad.Views
             switch (Role)
             {
                 case "User":
-                    HideTab(4);
+                    HideTab(2);
                     HideTab(1);
                     break;
                 case "Worker":
-                    HideTab(4);
                     HideTab(0);
                     break;
                 case "Admin":
+                    HideTab(2);
                     HideTab(1);
                     HideTab(0);
                     break;

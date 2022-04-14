@@ -5,7 +5,8 @@
    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
-    x:Class="DownTheRoad.Views.AssignedWorkerServicesPage">
+    x:Class="DownTheRoad.Views.AssignedWorkerServicesPage"
+    BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness">
@@ -69,6 +70,10 @@
                             PropertyName="Price"
                             Width="1*" />
                         <dg:DataGridColumn
+                            Title="Location"
+                            PropertyName="Location"
+                            Width="1*" />
+                        <dg:DataGridColumn
                             Title="Assign. to"
                             PropertyName="AssignedTo"
                             Width="1*" />
@@ -85,7 +90,15 @@
                 VerticalOptions="End"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Vertical">
+                <Grid
+                    HorizontalOptions="FillAndExpand"
+                    ColumnDefinitions="*,*" />
                 <Button
+                    Grid.Column="0"
+                    Text="Mark Complete"
+                    Command="{Binding CompletedCommand}" />
+                <Button
+                    Grid.Column="0"
                     Text="Back"
                     Command="{Binding BackCommand}" />
             </StackLayout>

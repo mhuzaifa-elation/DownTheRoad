@@ -30,6 +30,14 @@ namespace DownTheRoad.Model
         public decimal Price { get; set; }
         public string RequestedBy { get; set; }
         public string AssignedTo { get; set; }
-
+        public string Location { get; set; }
+        public bool Completed { get; set; }
+    }
+    public class WorkerProfile
+    {
+        public string Key { get; internal set; }
+        public string Name { get; set; }
+        public string Bio { get; set; }
+        public string ImageText { get; set; }
     }
 }

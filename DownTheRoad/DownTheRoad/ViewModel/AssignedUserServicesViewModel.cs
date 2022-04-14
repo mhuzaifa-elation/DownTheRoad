@@ -70,7 +70,7 @@ namespace DownTheRoad.ViewModel
         private async Task GetServices() //Gets latest exercises from firebase
         {
             List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
-            UserServicesB = AllExercises.FindAll(x => x.ServiceBy == SessionInfo.Username && (x.RequestedBy ?? "").Length ==0&& (x.AssignedTo ?? "").Length > 0);
+            UserServicesB = AllExercises.FindAll(x => x.ServiceBy == SessionInfo.Username && (x.RequestedBy ?? "").Length ==0&& (x.AssignedTo ?? "").Length > 0 && x.Completed==false) ;
         }
         private async void CmdRefresh() //Refreshes Page with Latest exercises
         {

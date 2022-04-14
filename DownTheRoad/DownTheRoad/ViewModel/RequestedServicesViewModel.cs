@@ -16,6 +16,7 @@ namespace DownTheRoad.ViewModel
         private WorkService _selectedService;
         private bool _isRefreshing;
         public ICommand ApproveCommand { get; set; }
+        public ICommand ShowWorkerCommand { get; set; }
         public ICommand DeleteRequestCommand { get; set; }
         public ICommand BackCommand { get; set; }
         public List<WorkService> UserServicesB
@@ -66,6 +67,7 @@ namespace DownTheRoad.ViewModel
             GetServices();
             ApproveCommand = new Command(ApproveService);
             DeleteRequestCommand = new Command(DeleteRequest);
+            ShowWorkerCommand = new Command(ShowWorker);
             BackCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopAsync());
         }
         #endregion
@@ -105,6 +107,21 @@ namespace DownTheRoad.ViewModel
                     await FirebaseServices.UpdateExercise(SelectedService.Key,SelectedService);
                     await Application.Current.MainPage.DisplayAlert("Information", $"Service successully Assigned to {SelectedService.AssignedTo}", "OK");
                     CmdRefresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+
+            }
+        }
+        private async void ShowWorker() //Delete Selected Exercise from firebase
+        {
+            try
+            {
+                if (SelectedService != null)
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new Views.WorkerProfile(SelectedService.RequestedBy));
                 }
             }
             catch (Exception ex)

@@ -18,6 +18,7 @@ namespace DownTheRoad.ViewModel
         private bool _isRefreshing;
         public ICommand RefreshCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand ShowCompletedCommand { get; set; }
         public ICommand AssignedCommand { get; set; }
         public ICommand RequestCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -74,6 +75,7 @@ namespace DownTheRoad.ViewModel
                 RequestCommand = new Command(RequestService);
                 DeleteCommand = new Command(DeleteService);
                 AssignedCommand = new Command(AssignedService);
+                ShowCompletedCommand = new Command(ShowCompleted);
             }
         }
         #endregion
@@ -86,10 +88,12 @@ namespace DownTheRoad.ViewModel
         }
         private async void AssignedService() //
         {
-
             await Application.Current.MainPage.Navigation.PushAsync(new AssignedUserServicesPage());
-            MessagingCenter.Subscribe<string>(this, "Refresh", (v) => { CmdRefresh(); });
-
+        }
+     
+        private async void ShowCompleted() //
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new CompletedUserServicesPage());
         }
         private async void RequestService() //
         {

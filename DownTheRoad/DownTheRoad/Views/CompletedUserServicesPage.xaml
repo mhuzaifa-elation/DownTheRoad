@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    Title="Assigned Services"
+    Title="Completed Services"
     xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
-    x:Class="DownTheRoad.Views.AssignedUserServicesPage"
+    x:Class="DownTheRoad.Views.CompletedUserServicesPage"
     BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
@@ -89,9 +89,9 @@
                 VerticalOptions="End"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Vertical">
-                    <Button
-                        Text="Back"
-                        Command="{Binding BackCommand}" />
+                <Button
+                    Text="Back"
+                    Command="{Binding BackCommand}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

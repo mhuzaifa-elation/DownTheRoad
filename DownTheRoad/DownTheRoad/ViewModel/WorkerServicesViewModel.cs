@@ -21,6 +21,7 @@ namespace DownTheRoad.ViewModel
         public ICommand AssignedCommand { get; set; }
         public ICommand RequestCommand { get; set; }
         public ICommand ApplyCommand { get; set; }
+        public ICommand ShowCompletedCommand { get; set; }
         public ICommand ShowCommand { get; set; }
         public List<WorkService> WorkerServicesB
         {
@@ -74,6 +75,7 @@ namespace DownTheRoad.ViewModel
                 RequestCommand = new Command(RequestService);
                 ApplyCommand = new Command(ApplyforService);
                 AssignedCommand = new Command(AssignedService);
+                ShowCompletedCommand = new Command(ShowCompleted);
                 ShowCommand = new Command(ShowService);
             }
         }
@@ -85,11 +87,16 @@ namespace DownTheRoad.ViewModel
             List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
             WorkerServicesB = AllExercises.FindAll(x => (x.ServiceBy ?? "").Length > 0 && (x.RequestedBy ?? "").Length == 0 && (x.AssignedTo ?? "").Length == 0);
         }
+        private async void ShowCompleted() //
+        {
+
+            await Application.Current.MainPage.Navigation.PushAsync(new CompletedWorkerServicesPage());
+
+        }
         private async void AssignedService() //
         {
 
             await Application.Current.MainPage.Navigation.PushAsync(new AssignedWorkerServicesPage());
-            MessagingCenter.Subscribe<string>(this, "Refresh", (v) => { CmdRefresh(); });
 
         }
 
@@ -107,7 +114,7 @@ namespace DownTheRoad.ViewModel
             {
                 if (SelectedService != null)
                 {
-                    string message = string.Format("Service Title : {0}\nPrice : {1}\nDescription : {2}\nService By : {3}", SelectedService.Title, SelectedService.Price.ToString(), SelectedService.Description, SelectedService.ServiceBy);
+                    string message = string.Format("Service Title : {0}\nPrice : {1}\nLocatino : {2}\nDescription : {3}\nService By : {4}", SelectedService.Title, SelectedService.Price.ToString(),SelectedService.Location, SelectedService.Description, SelectedService.ServiceBy);
                     await Application.Current.MainPage.DisplayAlert("Information", message, "OK");
                 }
             }

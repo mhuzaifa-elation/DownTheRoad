@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
-    x:Class="DownTheRoad.Views.RequestedWorkerServicesPage">
+    x:Class="DownTheRoad.Views.RequestedWorkerServicesPage"
+    BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness">
@@ -66,6 +67,10 @@
                         <dg:DataGridColumn
                             Title="Price"
                             PropertyName="Price"
+                            Width="1*" />
+                        <dg:DataGridColumn
+                            Title="Location"
+                            PropertyName="Location"
                             Width="1*" />
                         <dg:DataGridColumn
                             Title="Req. by"

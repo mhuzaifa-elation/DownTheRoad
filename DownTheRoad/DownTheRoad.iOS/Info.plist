@@ -36,5 +36,9 @@
     <string>Assets.xcassets/AppIcon.appiconset</string>
   <key>UIUserInterfaceStyle</key>
   <string>Light</string>
+  <key>NSAppleMusicUsageDescription</key>
+  <string>This App want to Access Storage</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>This App want to Access Photos</string>
 </dict>
 </plist>

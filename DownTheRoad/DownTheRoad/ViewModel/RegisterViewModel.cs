@@ -12,13 +12,13 @@ namespace DownTheRoad.ViewModel
     public class RegisterViewModel : INotifyPropertyChanged
     {
         #region ClassVariables
-        public ICommand ClearCommand { get; set; }
+        public ICommand BackCommand { get; set; }
         public ICommand SignupCommand { get; set; }
         string Username = "";
         string Password = "";
         string PhoneNo = "";
         string _selectedRole = "";
-        private List<string> Roles=Utils.Roles;
+        private List<string> Roles = Utils.Roles;
 
         public string PasswordB
         {
@@ -91,11 +91,11 @@ namespace DownTheRoad.ViewModel
         public RegisterViewModel()
         {
             SignupCommand = new Command(SignupClicked);
-            ClearCommand = new Command(async () => ClearValues()/*await Application.Current.MainPage.Navigation.PopAsync();*/);
+            BackCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopAsync());
         }
         #endregion
         #region Methods 
-        
+
         private async void SignupClicked()//Log the user using firebase Authentication
         {
             try

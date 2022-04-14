@@ -8,7 +8,8 @@
     BarBackgroundColor="#6fbe84"
     NavigationPage.HasNavigationBar="False"
     SelectedTabColor="Black"
-    UnselectedTabColor="White">
+    UnselectedTabColor="White"
+    BackgroundColor="White">
     <!--Pages can be added as references or inline-->
     <local:UserServicesPage
         TabIndex="0"
@@ -16,8 +17,12 @@
     <local:WorkerServicesPage
         TabIndex="1"
         Title="Services" />
-    <ContentPage
+
+    <local:WorkerProfile
         TabIndex="2"
+        Title="Profile" />
+    <ContentPage
+        TabIndex="3"
         Title="Contact Us">
         <StackLayout
             VerticalOptions="CenterAndExpand"
@@ -47,7 +52,7 @@ Email : info@dummy.com
 
     </ContentPage>
     <ContentPage
-        TabIndex="3"
+        TabIndex="4"
         Title="About Us">
         <StackLayout
             VerticalOptions="FillAndExpand"
@@ -58,6 +63,7 @@ Email : info@dummy.com
                 FontSize="Large"
                 Margin="0,30,0,0">
                 <Label.Text>
+                    
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus.
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only.
@@ -66,7 +72,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         </StackLayout>
 
     </ContentPage>
-    <local:RegisterPage
-        TabIndex="4"
-        Title="Register" />
+    <!--<local:RegisterPage
+        TabIndex="5"
+        Title="Register" />-->
 </TabbedPage>

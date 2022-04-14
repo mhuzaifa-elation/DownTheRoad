@@ -9,24 +9,23 @@ using Xamarin.Forms;
 
 namespace DownTheRoad.ViewModel
 {
-    public class AssignedWorkerServicesViewModel : INotifyPropertyChanged
+     public class CompletedUserServicesViewModel : INotifyPropertyChanged
     {
         #region ClassVariables
-        private List<WorkService> _WorkerServices;
+        private List<WorkService> _userServices;
         private WorkService _selectedService;
         private bool _isRefreshing;
         public ICommand BackCommand { get; set; }
-        public ICommand CompletedCommand { get; set; }
-        public List<WorkService> ServicesB
+        public List<WorkService> UserServicesB
         {
             get
             {
-                return _WorkerServices;
+                return _userServices;
             }
             set
             {
-                _WorkerServices = value;
-                OnPropertyChanged(nameof(ServicesB));
+                _userServices = value;
+                OnPropertyChanged(nameof(UserServicesB));
             }
         }
 
@@ -60,11 +59,10 @@ namespace DownTheRoad.ViewModel
         #endregion
         #region Constructor
         //Initializing commands and getting exercise from firebase
-        public AssignedWorkerServicesViewModel()
+        public CompletedUserServicesViewModel()
         {
             GetServices();
             BackCommand = new Command(async () => await Application.Current.MainPage.Navigation.PopAsync());
-            CompletedCommand = new Command(MarkCompleted);
         }
         #endregion
         #region Methods 
@@ -72,25 +70,7 @@ namespace DownTheRoad.ViewModel
         private async Task GetServices() //Gets latest exercises from firebase
         {
             List<WorkService> AllExercises = await FirebaseServices.GetAllServices();
-            ServicesB = AllExercises.FindAll(x => (x.ServiceBy ?? "").Length > 0 && (x.RequestedBy ?? "").Length ==0&& (x.AssignedTo ?? "")==SessionInfo.Username&&x.Completed==false);
-        }
-        private async void MarkCompleted() //Delete Selected Exercise from firebase
-        {
-            try
-            {
-                if (SelectedService != null)
-                {
-                    SelectedService.Completed = true;
-                    await FirebaseServices.UpdateExercise(SelectedService.Key, SelectedService);
-                    await Application.Current.MainPage.DisplayAlert("Information", $"{SelectedService.ServiceBy}'s service marked Completed.", "OK");
-                    CmdRefresh();
-                }
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-
-            }
+            UserServicesB = AllExercises.FindAll(x => x.ServiceBy == SessionInfo.Username && (x.RequestedBy ?? "").Length == 0 && (x.AssignedTo ?? "").Length > 0 && x.Completed == true);
         }
         private async void CmdRefresh() //Refreshes Page with Latest exercises
         {

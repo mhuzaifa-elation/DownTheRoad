@@ -2,9 +2,10 @@
 <ContentPage
     Title="Requested Services"
     xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
-    x:Class="DownTheRoad.Views.RequestedServicesPage">
+    x:Class="DownTheRoad.Views.RequestedServicesPage"
+    BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness">
@@ -66,6 +67,10 @@
                             PropertyName="Price"
                             Width="1*" />
                         <dg:DataGridColumn
+                            Title="Location"
+                            PropertyName="Location"
+                            Width="1*" />
+                        <dg:DataGridColumn
                             Title="Req. By"
                             PropertyName="RequestedBy"
                             Width="1*" />
@@ -83,7 +88,7 @@
                 HorizontalOptions="FillAndExpand"
                 Orientation="Vertical">
                 <Grid
-                    ColumnDefinitions="*,*,*"
+                    ColumnDefinitions="*,*"
                     MinimumHeightRequest="40">
                     <Button
                         Grid.Column="0"
@@ -93,8 +98,16 @@
                         Grid.Column="1"
                         Text="Delete Request"
                         Command="{Binding DeleteRequestCommand}" />
+                </Grid>
+                <Grid
+                    ColumnDefinitions="*,*"
+                    MinimumHeightRequest="40">
                     <Button
-                        Grid.Column="2"
+                        Grid.Column="0"
+                        Text="View Worker"
+                        Command="{Binding ShowWorkerCommand}" />
+                    <Button
+                        Grid.Column="1"
                         Text="Back"
                         Command="{Binding BackCommand}" />
                 </Grid>

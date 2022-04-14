@@ -13,6 +13,7 @@ namespace DownTheRoad.ViewModel
         #region ClassVariables
         string _serviceTitle = "";
         string _price = "";
+        string _location = "";
         string _description = "";
         public ICommand SaveServiceCommand { get; set; }
         public ICommand BackCommand { get; set; }
@@ -41,6 +42,19 @@ namespace DownTheRoad.ViewModel
                 }
                 _price = value;
                 OnPropertyChanged(nameof(PriceB));
+            }
+        }
+        public string LocationB
+        {
+            get => _location;
+            set
+            {
+                if (value == _location)
+                {
+                    return;
+                }
+                _location = value;
+                OnPropertyChanged(nameof(LocationB));
             }
         }
         public string DescriptionB
@@ -73,7 +87,7 @@ namespace DownTheRoad.ViewModel
         {
             try
             {
-                if (ServiceTitleB.Length == 0|| DescriptionB.Length == 0|| PriceB.Length == 0)
+                if (ServiceTitleB.Length == 0|| DescriptionB.Length == 0|| PriceB.Length == 0|| LocationB.Length==0)
                 {
                     throw new Exception("Please Recheck!\nAll fields are mandatory.");
                 }
@@ -81,8 +95,10 @@ namespace DownTheRoad.ViewModel
                 {
                     Title = ServiceTitleB,
                     Description = DescriptionB,
+                    Location = LocationB,
                     Price = Convert.ToDecimal(PriceB ?? "0"),
-                    ServiceBy = SessionInfo.Username
+                    ServiceBy = SessionInfo.Username,
+                    Completed = false
                 };
                     await FirebaseServices.AddExercise(Exercise);
                 await Application.Current.MainPage.DisplayAlert("Information", "Thank you for posting your required service", "OK");

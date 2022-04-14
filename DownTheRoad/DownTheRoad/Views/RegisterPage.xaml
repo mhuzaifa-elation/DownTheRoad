@@ -3,7 +3,8 @@
     Title="Sign Up"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="DownTheRoad.Views.RegisterPage">
+    x:Class="DownTheRoad.Views.RegisterPage"
+    BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness">
@@ -47,8 +48,8 @@
                     Text="Signup"
                     Command="{Binding SignupCommand}" />
                 <Button
-                    Text="Clear"
-                    Command="{Binding ClearCommand}" />
+                    Text="Back"
+                    Command="{Binding BackCommand}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

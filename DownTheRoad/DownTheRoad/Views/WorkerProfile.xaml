@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    Title="Worker Profile"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DownTheRoad.Views.WorkerProfile"
+    BackgroundColor="White">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness">
+            <OnPlatform.Platforms>
+                <On
+                    Platform="iOS"
+                    Value="0, 20, 0, 20" />
+            </OnPlatform.Platforms>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <ScrollView
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Label
+                        TextColor="DarkSlateGray"
+                        Text="Name" />
+                    <Entry
+                        IsEnabled="False"
+                        Placeholder="Worker Name"
+                        Text="{Binding WorkerNameB}" />
+                    <Grid
+                        VerticalOptions="Fill"
+                        HorizontalOptions="FillAndExpand"
+                        ColumnDefinitions="70*,30*">
+                        <Label
+                            Grid.Column="0"
+                            TextColor="DarkSlateGray"
+                            Text="Image" />
+                        <Button
+                            Grid.Column="1"
+                            IsVisible="{Binding IsWokerB}"
+                            Text="Select Image"
+                            Command="{Binding SelectImageCommand}" />
+                    </Grid>
+                    <Image
+                        Source="{Binding ImageSourceB}"
+                        Aspect="AspectFit"
+                        HeightRequest="200"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <Label
+                        TextColor="DarkSlateGray"
+                        Text="Bio" />
+                    <Editor
+                        IsEnabled="{Binding IsWokerB}"
+                        Placeholder="Enter Bio"
+                        Text="{Binding BioB}"
+                        VerticalOptions="FillAndExpand" />
+                </StackLayout>
+            </ScrollView>
+            <StackLayout
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+                <Button
+                    IsVisible="{Binding IsWokerB}"
+                    Text="Save"
+                    Command="{Binding SaveProfileCommand}" />
+                <Button
+                    Text="Back"
+                    Command="{Binding BackCommand}" />
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

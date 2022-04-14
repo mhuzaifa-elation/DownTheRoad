@@ -3,7 +3,8 @@
     Title="Add Service"
     xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DownTheRoad.Views.AddUserServicePage">
+             x:Class="DownTheRoad.Views.AddUserServicePage"
+    BackgroundColor="White">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness">
@@ -17,7 +18,8 @@
     <ContentPage.Content>
         <StackLayout
             VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand">
+            HorizontalOptions="FillAndExpand"
+            >
             <ScrollView
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
@@ -30,6 +32,13 @@
                     <Entry
                         Placeholder="Enter Service Title"
                         Text="{Binding ServiceTitleB}" />
+                    <Label
+                        TextColor="DarkSlateGray"
+                        Text="Location" />
+                    <Entry
+                        Placeholder="Enter Location"
+                        Text="{Binding LocationB}" 
+                        />
                     <Label
                         TextColor="DarkSlateGray"
                         Text="Price" />
